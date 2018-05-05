@@ -59,57 +59,54 @@ XmuCvtStringToWidget(XrmValuePtr args, Cardinal *num_args,
     XrmName name = XrmStringToName(fromVal->addr);
     Cardinal i;
 
-    if (*num_args != 1)
-    {
+    if (*num_args != 1) {
         i = 0;
         XtErrorMsg("wrongParameters", "cvtStringToWidget", "xtToolkitError",
                    "StringToWidget conversion needs parent arg", NULL, &i);
     }
 
-    parent = *(Widget*)args[0].addr;
+    parent = *(Widget *) args[0].addr;
     /* try to match names of normal children */
-  if (XtIsComposite(parent))
-    {
-        i = ((CompositeWidget)parent)->composite.num_children;
-        for (widgetP = ((CompositeWidget)parent)->composite.children;
-           i; i--, widgetP++)
-        if ((*widgetP)->core.xrm_name == name)
-          {
+    if (XtIsComposite(parent)) {
+        i = ((CompositeWidget) parent)->composite.num_children;
+        for (widgetP = ((CompositeWidget) parent)->composite.children;
+             i; i--, widgetP++) {
+            if ((*widgetP)->core.xrm_name == name) {
                 widget = *widgetP;
                 done(&widget, Widget);
             }
         }
+    }
 
     /* try to match names of popup children */
     i = parent->core.num_popups;
-  for (widgetP = parent->core.popup_list; i; i--, widgetP++)
-    if ((*widgetP)->core.xrm_name == name)
-      {
+    for (widgetP = parent->core.popup_list; i; i--, widgetP++) {
+        if ((*widgetP)->core.xrm_name == name) {
             widget = *widgetP;
             done(&widget, Widget);
         }
+    }
 
     /* try to match classes of normal children */
-  if (XtIsComposite(parent))
-    {
-        i = ((CompositeWidget)parent)->composite.num_children;
-        for (widgetP = ((CompositeWidget)parent)->composite.children;
-           i; i--, widgetP++)
-        if ((*widgetP)->core.widget_class->core_class.xrm_class == name)
-          {
+    if (XtIsComposite(parent)) {
+        i = ((CompositeWidget) parent)->composite.num_children;
+        for (widgetP = ((CompositeWidget) parent)->composite.children;
+             i; i--, widgetP++) {
+            if ((*widgetP)->core.widget_class->core_class.xrm_class == name) {
                 widget = *widgetP;
                 done(&widget, Widget);
             }
         }
+    }
 
     /* try to match classes of popup children */
     i = parent->core.num_popups;
-  for (widgetP = parent->core.popup_list; i; i--, widgetP++)
-    if ((*widgetP)->core.widget_class->core_class.xrm_class == name)
-      {
+    for (widgetP = parent->core.popup_list; i; i--, widgetP++) {
+        if ((*widgetP)->core.widget_class->core_class.xrm_class == name) {
             widget = *widgetP;
             done(&widget, Widget);
         }
+    }
 
     XtStringConversionWarning(fromVal->addr, XtRWidget);
     toVal->addr = NULL;
@@ -149,77 +146,78 @@ XmuNewCvtStringToWidget(Display *dpy, XrmValue *args, Cardinal *num_args,
 
     if (*num_args != 1)
         XtAppWarningMsg(XtDisplayToApplicationContext(dpy),
-                        "wrongParameters","cvtStringToWidget","xtToolkitError",
+                        "wrongParameters", "cvtStringToWidget",
+                        "xtToolkitError",
                         "String To Widget conversion needs parent argument",
-                        (String *)NULL, (Cardinal *)NULL);
+                        (String *) NULL, (Cardinal *) NULL);
 
-    parent = *(Widget*)args[0].addr;
+    parent = *(Widget *) args[0].addr;
     /* try to match names of normal children */
-  if (XtIsComposite(parent))
-    {
-        i = ((CompositeWidget)parent)->composite.num_children;
-        for (widgetP = ((CompositeWidget)parent)->composite.children;
-	   i; i--, widgetP++)
-	    if ((*widgetP)->core.xrm_name == name)
-		newDone(Widget, *widgetP);
-	}
+    if (XtIsComposite(parent)) {
+        i = ((CompositeWidget) parent)->composite.num_children;
+        for (widgetP = ((CompositeWidget) parent)->composite.children;
+             i; i--, widgetP++) {
+            if ((*widgetP)->core.xrm_name == name)
+                newDone(Widget, *widgetP);
+        }
+    }
 
     /* try to match names of popup children */
     i = parent->core.num_popups;
-  for (widgetP = parent->core.popup_list; i; i--, widgetP++)
-	if ((*widgetP)->core.xrm_name == name)
-	    newDone(Widget, *widgetP);
+    for (widgetP = parent->core.popup_list; i; i--, widgetP++) {
+        if ((*widgetP)->core.xrm_name == name)
+            newDone(Widget, *widgetP);
+    }
 
     /* try to match classes of normal children */
-  if (XtIsComposite(parent))
-    {
-	i = ((CompositeWidget)parent)->composite.num_children;
-	for (widgetP = ((CompositeWidget)parent)->composite.children;
-	   i; i--, widgetP++)
-	    if ((*widgetP)->core.widget_class->core_class.xrm_class == name)
-		newDone(Widget, *widgetP);
-	}
+    if (XtIsComposite(parent)) {
+        i = ((CompositeWidget) parent)->composite.num_children;
+        for (widgetP = ((CompositeWidget) parent)->composite.children;
+             i; i--, widgetP++) {
+            if ((*widgetP)->core.widget_class->core_class.xrm_class == name)
+                newDone(Widget, *widgetP);
+        }
+    }
 
     /* try to match classes of popup children */
     i = parent->core.num_popups;
-  for (widgetP = parent->core.popup_list; i; i--, widgetP++)
-	if ((*widgetP)->core.widget_class->core_class.xrm_class == name)
-	    newDone(Widget, *widgetP);
+    for (widgetP = parent->core.popup_list; i; i--, widgetP++) {
+        if ((*widgetP)->core.widget_class->core_class.xrm_class == name)
+            newDone(Widget, *widgetP);
+    }
 
-    XtDisplayStringConversionWarning(dpy, (String)fromVal->addr, XtRWidget);
-  return (False);
+    XtDisplayStringConversionWarning(dpy, (String) fromVal->addr, XtRWidget);
+    return (False);
 }
 
 /*ARGSUSED*/
 Boolean
 XmuCvtWidgetToString(Display *dpy, XrmValuePtr args, Cardinal *num_args,
-		     XrmValuePtr fromVal, XrmValuePtr toVal,
-		     XtPointer *data)
+                     XrmValuePtr fromVal, XrmValuePtr toVal, XtPointer *data)
 {
-  static String buffer;
-  Cardinal size;
-  Widget widget;
+    static String buffer;
+    Cardinal size;
+    Widget widget;
 
-  widget = *(Widget *)fromVal->addr;
+    widget = *(Widget *) fromVal->addr;
 
-  if (widget)
-    buffer = XrmQuarkToString(widget->core.xrm_name);
-  else
-    buffer = "(null)";
+    if (widget)
+        buffer = XrmQuarkToString(widget->core.xrm_name);
+    else
+        buffer = "(null)";
 
-  size = strlen(buffer) + 1;
-  if (toVal->addr != NULL)
-    {
-      if (toVal->size < size)
-	{
-	  toVal->size = size;
-	  return (False);
-	}
-      strcpy((char *)toVal->addr, buffer);
+    size = strlen(buffer) + 1;
+    if (toVal->addr != NULL) {
+        if (toVal->size < size) {
+            toVal->size = size;
+            return (False);
+        }
+        strcpy((char *) toVal->addr, buffer);
     }
-  else
-    toVal->addr = (XPointer)buffer;
-  toVal->size = sizeof(String);
+    else {
+        toVal->addr = (XPointer) buffer;
+    }
+    toVal->size = sizeof(String);
 
-  return (True);
+    return (True);
 }
