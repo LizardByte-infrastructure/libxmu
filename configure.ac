@@ -32,10 +32,6 @@ XORG_CHECK_SGML_DOCTOOLS(1.8)
 PKG_CHECK_MODULES(XMU, xt xext x11 xextproto)
 PKG_CHECK_MODULES(XMUU, x11)
 
-# CvtStdSel.c needs to know which network transports to build hostname
-# conversion routines for
-XTRANS_CONNECTION_FLAGS
-
 # Checks for library functions.
 AC_REPLACE_FUNCS([reallocarray])
 

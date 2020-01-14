@@ -1442,7 +1442,7 @@ returns the size in bits of the elements</para>
       </variablelist>
 
 This function converts the following standard selections: CLASS,
-CLIENT_WINDOW, DECNET_ADDRESS, HOSTNAME, IP_ADDRESS, NAME, OWNER_OS,
+CLIENT_WINDOW, DECNET_ADDRESS, HOSTNAME, NAME, OWNER_OS,
 TARGETS, TIMESTAMP, and USER.  It returns
 <symbol>True</symbol>
 if the conversion was successful, else it returns
