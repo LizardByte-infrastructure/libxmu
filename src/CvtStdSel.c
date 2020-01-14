@@ -36,13 +36,6 @@ in this Software without prior written authorization from The Open Group.
 #include <config.h>
 #endif
 
-#ifdef SYSVNET
-#include <interlan/il_types.h>
-#define __TYPES__		/* prevent #include <sys/types.h> in Xlib.h */
-#include <interlan/netdb.h>
-#include <interlan/socket.h>
-#endif /* SYSVNET */
-
 #include <X11/IntrinsicP.h>
 #include <X11/Xatom.h>
 #include <X11/ShellP.h>
@@ -51,7 +44,6 @@ in this Software without prior written authorization from The Open Group.
 #endif
 #include <stdio.h>
 
-#ifndef SYSVNET
 #ifdef WIN32
 #include <X11/Xwinsock.h>
 #define XOS_USE_MTSAFE_NETDBAPI
@@ -66,7 +58,6 @@ in this Software without prior written authorization from The Open Group.
 #endif
 #define X_INCLUDE_NETDB_H
 #include <X11/Xos_r.h>
-#endif
 
 #include <X11/Xos.h>
 #include <stdlib.h>
