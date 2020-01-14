@@ -80,6 +80,9 @@ in this Software without prior written authorization from The Open Group.
 #ifdef CSRG_BASED
 #define USE_UNAME
 #endif
+#ifdef __linux__
+#define USE_UNAME
+#endif
 #endif /*X_OS_FILE*/
 #ifdef USE_UNAME
 #include <sys/utsname.h>
