@@ -547,14 +547,14 @@ ExecuteCommand(Widget w, Atom sel, ResIdent ident, EditresEvent *event)
  *	target	   - target type for this selection
  *	type_ret   - type of the selection
  *	value_ret  - selection value
- *	length_ret - lenght of this selection
+ *	length_ret - length of this selection
  *	format_ret - the format the selection is in
  *
  * Description:
  *	Converts a selection
  *
  * Returns:
- *	True if conversion was sucessful
+ *	True if conversion was successful
  */
 /*ARGSUSED*/
 static Boolean
@@ -592,14 +592,14 @@ ConvertReturnCommand(Widget w, Atom *selection, Atom *target, Atom *type_ret,
 static void
 CommandDone(Widget widget, Atom *selection, Atom *target)
 {
-    /* Keep the toolkit from automaticaly freeing the selection value */
+    /* Keep the toolkit from automatically freeing the selection value */
 }
 
 /*
  * Function:
  *	SendFailure
  *
- * Paramters:
+ * Parameters:
  *	w     - widget to own the selection
  *	sel   - selection to assert
  *	ident - identifier
@@ -712,7 +712,7 @@ qcmp_widget_list(register _Xconst void *left, register _Xconst void *right)
  *	extra	 - return extra children
  *
  * Description:
- *	Retuns all children (popup, normal and otherwise) of this widget
+ *	Returns all children (popup, normal and otherwise) of this widget
  *
  * Returns:
  *	number of children
@@ -1071,7 +1071,7 @@ ExecuteSetValues(Widget w, SetValuesEvent *sv_event, WidgetInfo *entry,
  *
  * Description:
  *	  Given a widget it builds a protocol packet containing the entire
- *	widget heirarchy.
+ *	widget hierarchy.
  *
  * Returns:
  *	NULL
@@ -1219,7 +1219,7 @@ DoGetGeometry(Widget w, EditresEvent *event, ProtocolStream *stream)
 
 	if ((str = VerifyWidget(w, &geom_event->widgets[i])) != NULL)
 	{
-	    _XEditResPutBool(stream, True);	/* an error occured */
+	    _XEditResPutBool(stream, True);	/* an error occurred */
 	    _XEditResPutString8(stream, str);	/* set message */
 	}
 	else
@@ -1241,7 +1241,7 @@ DoGetGeometry(Widget w, EditresEvent *event, ProtocolStream *stream)
  *	Gets the geometry for each widget specified.
  *
  * Returns:
- *	True if no error occured.
+ *	True if no error occurred.
  */
 static void
 ExecuteGetGeometry(Widget w, ProtocolStream *stream)
@@ -1256,7 +1256,7 @@ ExecuteGetGeometry(Widget w, ProtocolStream *stream)
     if (!XtIsRectObj(w) || (XtIsWidget(w) && !XtIsRealized(w)))
     {
 	_XEditResPutBool(stream, False);	/* no error */
-	_XEditResPutBool(stream, False);	/* not visable */
+	_XEditResPutBool(stream, False);	/* not visible */
 	for (i = 0; i < 5; i++)		/* fill in extra space with 0's */
 	    _XEditResPut16(stream, 0);
 	return;
@@ -1282,7 +1282,7 @@ ExecuteGetGeometry(Widget w, ProtocolStream *stream)
 	    if (attrs.map_state != IsViewable)
 	    {
 		_XEditResPutBool(stream, False);	/* no error */
-		_XEditResPutBool(stream, False);	/* not visable */
+		_XEditResPutBool(stream, False);	/* not visible */
 		for (i = 0; i < 5; i++)	/* fill in extra space with 0's */
 		    _XEditResPut16(stream, 0);
 		return;
@@ -1290,7 +1290,7 @@ ExecuteGetGeometry(Widget w, ProtocolStream *stream)
 	}
 	else
 	{
-	    _XEditResPut8(stream, True); /* Error occured. */
+	    _XEditResPut8(stream, True); /* Error occurred. */
 	    _XEditResPutString8(stream, "XGetWindowAttributes failed.");
 	    return;
 	}
@@ -1299,7 +1299,7 @@ ExecuteGetGeometry(Widget w, ProtocolStream *stream)
     XtTranslateCoords(w, -((int) border_width), -((int) border_width), &x, &y);
 
     _XEditResPutBool(stream, False);	/* no error */
-    _XEditResPutBool(stream, True);	/* Visable */
+    _XEditResPutBool(stream, True);	/* Visible */
     _XEditResPut16(stream, x);
     _XEditResPut16(stream, y);
     _XEditResPut16(stream, width);
@@ -1463,7 +1463,7 @@ DoGetResources(Widget w, EditresEvent *event, ProtocolStream *stream)
     _Xconst char *str;
     GetResEvent *res_event = (GetResEvent *)event;
 
-    _XEditResPut16(stream, res_event->num_entries); /* number of replys */
+    _XEditResPut16(stream, res_event->num_entries); /* number of replies */
 
     for (i = 0; i < res_event->num_entries; i++)
     {
@@ -1473,12 +1473,12 @@ DoGetResources(Widget w, EditresEvent *event, ProtocolStream *stream)
 	_XEditResPutWidgetInfo(stream, &res_event->widgets[i]);
 	if ((str = VerifyWidget(w, &res_event->widgets[i])) != NULL)
 	{
-	    _XEditResPutBool(stream, True);	/* an error occured */
+	    _XEditResPutBool(stream, True);	/* an error occurred */
 	    _XEditResPutString8(stream, str);	/* set message */
 	}
 	else
 	{
-	    _XEditResPutBool(stream, False);	/* no error occured */
+	    _XEditResPutBool(stream, False);	/* no error occurred */
 	    ExecuteGetResources(res_event->widgets[i].real_widget, stream);
 	}
     }
@@ -1790,7 +1790,7 @@ _XEditResResetStream(ProtocolStream *stream)
  *	Retrieves an unsigned 8 bit value from the protocol stream.
  *
  * Returns:
- *	True if sucessful
+ *	True if successful
  */
 Bool
 _XEditResGet8(ProtocolStream *stream, unsigned char *value)
@@ -1814,7 +1814,7 @@ _XEditResGet8(ProtocolStream *stream, unsigned char *value)
  *	Retrieves an unsigned 16 bit value from the protocol stream.
  *
  * Returns:
- *	True if sucessful
+ *	True if successful
  */
 Bool
 _XEditResGet16(ProtocolStream *stream, unsigned short *value)
@@ -1840,7 +1840,7 @@ _XEditResGet16(ProtocolStream *stream, unsigned short *value)
  *	Retrieves an signed 16 bit value from the protocol stream.
  *
  * Returns:
- *	True if sucessful
+ *	True if successful
  */
 Bool
 _XEditResGetSigned16(ProtocolStream *stream, short *value)
@@ -1874,7 +1874,7 @@ _XEditResGetSigned16(ProtocolStream *stream, short *value)
  *	Retrieves an unsigned 32 bit value from the protocol stream.
  *
  * Returns:
- *	True if sucessful
+ *	True if successful
  */
 Bool
 _XEditResGet32(ProtocolStream *stream, unsigned long *value)
@@ -1985,7 +1985,7 @@ _XEditResGetWidgetInfo(ProtocolStream *stream, WidgetInfo *info)
  *	Converts a string to an editres block value.
  *
  * Returns:
- *	True if conversion was sucessful
+ *	True if conversion was successful
  */
 /*ARGSUSED*/
 static Boolean

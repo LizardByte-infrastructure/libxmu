@@ -135,7 +135,7 @@ XmuAddCloseDisplayHook(Display *dpy, XmuCloseHookProc func, XPointer arg)
 	elist = de;
     }
 
-    /* add to end of list of callback recordss */
+    /* add to end of list of callback records */
     cb->func = func;
     cb->arg = arg;
     cb->next = NULL;
@@ -221,7 +221,7 @@ XmuLookupCloseDisplayHook(Display *dpy, CloseHook handle,
 
 /*
  * Find the specified display on the linked list of displays.  Also return
- * the preceeding link so that the display can be unlinked without having
+ * the preceding link so that the display can be unlinked without having
  * back pointers.
  */
 static DisplayEntry *

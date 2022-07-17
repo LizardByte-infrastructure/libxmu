@@ -98,7 +98,7 @@ XmuAreaDup(XmuArea *area)
  *	src - source area
  *
  * Description:
- *	Minimizes memory alocation, trying to use already alocated memory
+ *	Minimizes memory allocation, trying to use already allocated memory
  *	in dst, freeing what is not required anymore.
  */
 XmuArea *
@@ -855,7 +855,7 @@ XmuScanlineNot(XmuScanline *scanline, int minx, int maxx)
  *	XmuScanlineOrSegment
  *
  * Parameters:
- *	dst - destionation scanline
+ *	dst - destination scanline
  *	src - source segment
  *
  * Description:
@@ -1014,7 +1014,7 @@ XmuScanlineAndSegment(XmuScanline *dst, XmuSegment *src)
  *	XmuScanlineXorSegment
  *
  * Parameters:
- *	dst - destionation scanline
+ *	dst - destination scanline
  *	src - source segment
  *
  * Descriptipn:
@@ -1123,7 +1123,7 @@ XmuScanlineXorSegment(XmuScanline *dst, XmuSegment *src)
  *	ScanlineOr
  *
  * Parameters:
- *	dst - destionation scanline
+ *	dst - destination scanline
  *	src - source scanline
  *
  * Description:

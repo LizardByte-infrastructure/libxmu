@@ -41,7 +41,7 @@ in this Software without prior written authorization from The Open Group.
 
 
 /*
- * Based on an optimized version provided by Jim Becker, Auguest 5, 1988.
+ * Based on an optimized version provided by Jim Becker, August 5, 1988.
  */
 
 #ifdef HAVE_CONFIG_H

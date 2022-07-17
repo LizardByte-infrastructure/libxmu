@@ -130,7 +130,7 @@ in this Software without prior written authorization from The Open Group.
 
 	Send Widget Tree returns the toolkit type, and a fuly specified list
         of widgets for each widget in the tree.  This is enough information
-        to completely reconstruct the entire widget heirarchy.
+        to completely reconstruct the entire widget hierarchy.
 
 	The window return value contains the Xid of the window currently
 	used by this widget.  If the widget is unrealized then 0 is returned,
@@ -195,7 +195,7 @@ in this Software without prior written authorization from The Open Group.
 			Type:	String8 ]
 
 	GetResource retrieves the kind, name, class and type for every
-	widget passed to it.  If an error occured with the resource fetch
+	widget passed to it.  If an error occurred with the resource fetch
 	Error will be set to True for the given widget and a message
 	is returned rather than the resource info.
 
@@ -220,8 +220,8 @@ in this Software without prior written authorization from The Open Group.
 	      	  Height:	Card16
 		  BorderWidth:	Card16 ]
 
-	GetGeometry retreives the mapping state, x, y, width, height
-	and border width for each widget specified.  If an error occured
+	GetGeometry retrieves the mapping state, x, y, width, height
+	and border width for each widget specified.  If an error occurred
 	with the geometry fetch "Error" will be set to True for the given
 	widget and a message is returned rather than the geometry info.
 	X an Y corrospond to the root coordinates of the upper left corner

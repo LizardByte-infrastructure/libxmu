@@ -221,7 +221,7 @@ XmuWnFetchResources(XmuWidgetNode *node, Widget toplevel,
 
 
     /*
-     * walk up tree geting resources; since we've instantiated the widget,
+     * walk up tree getting resources; since we've instantiated the widget,
      * we know that all of our superclasses have been initialized
      */
     for (wn = node; wn && !wn->have_resources; wn = wn->superclass) {

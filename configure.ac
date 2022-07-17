@@ -23,7 +23,7 @@ XORG_WITH_FOP
 XORG_WITH_XSLTPROC
 XORG_CHECK_SGML_DOCTOOLS(1.8)
 
-# Obtain compiler/linker options for depedencies
+# Obtain compiler/linker options for dependencies
 PKG_CHECK_MODULES(XMU, xt xext x11 xextproto)
 PKG_CHECK_MODULES(XMUU, x11)
 
