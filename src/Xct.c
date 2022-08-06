@@ -30,6 +30,7 @@ in this Software without prior written authorization from The Open Group.
 #include <X11/Xfuncs.h>
 #include "Xct.h"
 #include <stdio.h>
+#include "Xmuint.h"
 
 #define UsedGraphic	0x0001
 #define UsedDirection	0x0002
@@ -298,6 +299,7 @@ HandleExtended(register XctData data, int c)
 	;
     if (i == priv->enc_count) {
 	XctString cp;
+	char **new_encodings;
 
 	for (cp = enc; cp != ptr; cp++) {
 	    if ((!IsGL(*cp) && !IsGR(*cp)) || (*cp == 0x2a) || (*cp == 0x3f))
@@ -307,11 +309,14 @@ HandleExtended(register XctData data, int c)
 	(void) memmove((char *)ptr, (char *)enc, len);
 	ptr[len] = 0x00;
 	priv->enc_count++;
-	if (priv->encodings)
-	    priv->encodings = realloc(priv->encodings,
-                                      priv->enc_count * sizeof(char *));
-	else
-	    priv->encodings = malloc(sizeof(char *));
+	new_encodings = reallocarray(priv->encodings,
+				     priv->enc_count, sizeof(char *));
+	if (new_encodings == NULL) {
+	    priv->enc_count--;
+	    free(ptr);
+	    return 0;
+	}
+	priv->encodings = new_encodings;
 	priv->encodings[i] = (char *)ptr;
     }
     data->encoding = priv->encodings[i];
@@ -498,14 +503,16 @@ XctNextItem(register XctData data)
 		    ((data->item[1] == 0x31) || (data->item[1] == 0x32))) {
 		    data->horz_depth++;
 		    if (priv->dirsize < data->horz_depth) {
+			XctHDirection *new_dirstack;
 			priv->dirsize += 10;
-			if (priv->dirstack)
-			    priv->dirstack = realloc(priv->dirstack,
-						     priv->dirsize *
-						     sizeof(XctHDirection));
-			else
-			    priv->dirstack = malloc(priv->dirsize *
+			new_dirstack = reallocarray(priv->dirstack,
+						    priv->dirsize,
 						    sizeof(XctHDirection));
+			if (new_dirstack == NULL) {
+			    priv->dirsize -= 10;
+			    return XctError;
+			}
+			priv->dirstack = new_dirstack;
 		    }
 		    priv->dirstack[data->horz_depth - 1] = data->horizontal;
 		    if (data->item[1] == 0x31)
