@@ -226,7 +226,7 @@ XmuReadBitmapData(FILE *fstream, unsigned int *width, unsigned int *height,
 	bytes_per_line = (ww+7)/8 + padding;
 
 	size = bytes_per_line * hh;
-	data = (unsigned char *) Xmalloc ((unsigned int) size);
+	data = Xmalloc ((unsigned int) size);
 	if (!data)
 	  RETURN (BitmapNoMemory);
 

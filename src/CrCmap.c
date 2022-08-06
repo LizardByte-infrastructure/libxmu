@@ -218,13 +218,13 @@ readwrite_map(Display *dpy, XVisualInfo *vinfo, XStandardColormap *colormap)
      * cell, so that is why we do these slow gymnastics.
      */
 
-    if ((pixels = (unsigned long *) calloc((unsigned) vinfo->colormap_size,
-				      sizeof(unsigned long))) == NULL)
+    if ((pixels = calloc((unsigned) vinfo->colormap_size,
+                         sizeof(unsigned long))) == NULL)
 	return 0;
 
     if ((npixels = ROmap(dpy, colormap->colormap, pixels,
 			   vinfo->colormap_size, ncolors)) == 0) {
-	free((char *) pixels);
+	free(pixels);
 	return 0;
     }
 
@@ -235,7 +235,7 @@ readwrite_map(Display *dpy, XVisualInfo *vinfo, XStandardColormap *colormap)
 	/* can't find enough contiguous cells, give up */
 	XFreeColors(dpy, colormap->colormap, pixels, npixels,
 		    (unsigned long) 0);
-	free((char *) pixels);
+	free(pixels);
 	return 0;
     }
     colormap->base_pixel = pixels[first_index];
@@ -326,7 +326,7 @@ readwrite_map(Display *dpy, XVisualInfo *vinfo, XStandardColormap *colormap)
 		    &(pixels[first_index + ncolors]), remainder,
 		    (unsigned long) 0);
 
-    free((char *) pixels);
+    free(pixels);
     return 1;
 }
 
@@ -462,7 +462,7 @@ free_cells(Display *dpy, Colormap cmap, unsigned long pixels[],
      */
     XFreeColors(dpy, cmap, pixels, p, (unsigned long) 0);
     XFreeColors(dpy, cmap, &(pixels[p+1]), npixels - p - 1, (unsigned long) 0);
-    free((char *) pixels);
+    free(pixels);
 }
 
 

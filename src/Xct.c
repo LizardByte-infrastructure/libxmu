@@ -303,16 +303,15 @@ HandleExtended(register XctData data, int c)
 	    if ((!IsGL(*cp) && !IsGR(*cp)) || (*cp == 0x2a) || (*cp == 0x3f))
 		return 0;
 	}
-	ptr = (XctString)malloc((unsigned)len + 1);
+	ptr = malloc(len + 1);
 	(void) memmove((char *)ptr, (char *)enc, len);
 	ptr[len] = 0x00;
 	priv->enc_count++;
 	if (priv->encodings)
-	    priv->encodings = (char **)realloc(
-					    (char *)priv->encodings,
-					    priv->enc_count * sizeof(char *));
+	    priv->encodings = realloc(priv->encodings,
+                                      priv->enc_count * sizeof(char *));
 	else
-	    priv->encodings = (char **)malloc(sizeof(char *));
+	    priv->encodings = malloc(sizeof(char *));
 	priv->encodings[i] = (char *)ptr;
     }
     data->encoding = priv->encodings[i];
@@ -329,10 +328,9 @@ ShiftGRToGL(register XctData data, int hasCdata)
     if (data->item_length > priv->buf_count) {
 	priv->buf_count = data->item_length;
 	if (priv->itembuf)
-	    priv->itembuf = (XctString)realloc((char *)priv->itembuf,
-					       priv->buf_count);
+	    priv->itembuf = realloc(priv->itembuf, priv->buf_count);
 	else
-	    priv->itembuf = (XctString)malloc(priv->buf_count);
+	    priv->itembuf = malloc(priv->buf_count);
     }
     (void) memmove((char *)priv->itembuf, (char *)data->item,
 		   data->item_length);
@@ -355,7 +353,7 @@ XctCreate(_Xconst unsigned char *string, int length, XctFlags flags)
     register XctData data;
     register XctPriv priv;
 
-    data = (XctData)malloc(sizeof(struct _XctRec) + sizeof(struct _XctPriv));
+    data = malloc(sizeof(struct _XctRec) + sizeof(struct _XctPriv));
     if (!data)
 	return data;
     data->priv = priv = (XctPriv)(data + 1);
@@ -502,13 +500,11 @@ XctNextItem(register XctData data)
 		    if (priv->dirsize < data->horz_depth) {
 			priv->dirsize += 10;
 			if (priv->dirstack)
-			    priv->dirstack = (XctHDirection *)
-					     realloc((char *)priv->dirstack,
+			    priv->dirstack = realloc(priv->dirstack,
 						     priv->dirsize *
 						     sizeof(XctHDirection));
 			else
-			    priv->dirstack = (XctHDirection *)
-					     malloc(priv->dirsize *
+			    priv->dirstack = malloc(priv->dirsize *
 						    sizeof(XctHDirection));
 		    }
 		    priv->dirstack[data->horz_depth - 1] = data->horizontal;
@@ -671,14 +667,14 @@ XctFree(register XctData data)
     register XctPriv priv = data->priv;
 
     if (priv->dirstack)
-	free((char *)priv->dirstack);
+	free(priv->dirstack);
     if (data->flags & XctFreeString)
-	free((char *)data->total_string);
+	free(data->total_string);
     for (i = 0; i < priv->enc_count; i++)
 	free(priv->encodings[i]);
     if (priv->encodings)
-	free((char *)priv->encodings);
+	free(priv->encodings);
     if (priv->itembuf)
-	free((char *)priv->itembuf);
-    free((char *)data);
+	free(priv->itembuf);
+    free(data);
 }
