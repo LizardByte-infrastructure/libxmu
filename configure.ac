@@ -6,6 +6,11 @@ AC_INIT([libXmu], [1.1.3],
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CONFIG_HEADERS([config.h])
 
+# Set common system defines for POSIX extensions, such as _GNU_SOURCE
+# Must be called before any macros that run the compiler (like AC_PROG_LIBTOOL)
+# to avoid autoconf errors.
+AC_USE_SYSTEM_EXTENSIONS
+
 # Initialize Automake
 AM_INIT_AUTOMAKE([foreign dist-xz])
 
@@ -30,6 +35,9 @@ PKG_CHECK_MODULES(XMUU, x11)
 # CvtStdSel.c needs to know which network transports to build hostname
 # conversion routines for
 XTRANS_CONNECTION_FLAGS
+
+# Checks for library functions.
+AC_REPLACE_FUNCS([reallocarray])
 
 # Allow checking code with lint, sparse, etc.
 XORG_WITH_LINT
