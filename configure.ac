@@ -33,6 +33,7 @@ PKG_CHECK_MODULES(XMU, xt xext x11 xextproto)
 PKG_CHECK_MODULES(XMUU, x11)
 
 # Checks for library functions.
+AC_CHECK_FUNCS([uname])
 AC_REPLACE_FUNCS([reallocarray])
 
 # Allow checking code with lint, sparse, etc.

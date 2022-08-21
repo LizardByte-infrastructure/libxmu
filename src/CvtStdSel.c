@@ -65,26 +65,14 @@ in this Software without prior written authorization from The Open Group.
 #include <X11/Xfuncs.h>
 
 #ifndef OS_NAME
-#ifndef X_OS_FILE
-#ifdef SYSV			/* keep separate until makedepend fixed */
-#define USE_UNAME
-#endif
-#ifdef SVR4
-#define USE_UNAME
-#endif
-#ifdef ultrix
-#define USE_UNAME
-#endif
-#ifdef CSRG_BASED
-#define USE_UNAME
-#endif
-#ifdef __linux__
-#define USE_UNAME
-#endif
-#endif /*X_OS_FILE*/
-#ifdef USE_UNAME
-#include <sys/utsname.h>
-#endif
+# ifndef X_OS_FILE
+#  ifdef HAVE_UNAME
+#   define USE_UNAME
+#  endif
+# endif /*X_OS_FILE*/
+# ifdef USE_UNAME
+#  include <sys/utsname.h>
+# endif
 #endif
 
 /*
@@ -148,14 +136,10 @@ get_os_name(void)
 	}
 #endif
 
-#ifdef sun
-	return XtNewString("SunOS");
-#else
-# if !defined(SYSV) && (defined(CSRG_BASED) || defined(unix))
+#if !defined(SYSV) && (defined(CSRG_BASED) || defined(unix))
 	return XtNewString("BSD");
-# else
+#else
 	return NULL;
-# endif
 #endif
 
 #endif /*OS_NAME*/
