@@ -144,7 +144,7 @@ NextInt(FILE *fstream)
  * The data returned by the following routine is always in left-most byte
  * first and left-most bit first.  If it doesn't return BitmapSuccess then
  * its arguments won't have been touched.  This routine should look as much
- * like the Xlib routine XReadBitmapfile as possible.
+ * like the Xlib routine XReadBitmapFile as possible.
  */
 int
 XmuReadBitmapData(FILE *fstream, unsigned int *width, unsigned int *height,

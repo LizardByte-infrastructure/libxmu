@@ -1780,7 +1780,7 @@ _XEditResResetStream(ProtocolStream *stream)
  */
 /*
  * Function:
- *	_XEditResGetg8
+ *	_XEditResGet8
  *
  * Parameters:
  *	stream - protocol stream
@@ -1971,7 +1971,7 @@ _XEditResGetWidgetInfo(ProtocolStream *stream, WidgetInfo *info)
  ************************************************************/
 /*
  * Function:
- *	CvStringToBlock
+ *	CvtStringToBlock
  *
  * Parameters:
  *	dpy	       - display

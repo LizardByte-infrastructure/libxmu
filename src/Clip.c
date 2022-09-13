@@ -252,7 +252,7 @@ XmuAreaNot(XmuArea *area, int x1, int y1, int x2, int y2)
  *	or  - or operation if true, else xor operation
  *
  * Description:
- *	Executes Or (Union) or Xor (Reverse intesection) of the areas
+ *	Executes Or (Union) or Xor (Reverse intersection) of the areas
  */
 XmuArea *
 XmuAreaOrXor(XmuArea *dst, XmuArea *src, Bool or)
@@ -1017,7 +1017,7 @@ XmuScanlineAndSegment(XmuScanline *dst, XmuSegment *src)
  *	dst - destination scanline
  *	src - source segment
  *
- * Descriptipn:
+ * Description:
  * (input)     +------------+  +----------+    +-----------+
  * (src)           +------------------------+
  * (output)    +---+        +--+          +-+  +-----------+
