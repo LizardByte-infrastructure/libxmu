@@ -306,7 +306,7 @@ HandleExtended(register XctData data, int c)
 		return 0;
 	}
 	ptr = malloc(len + 1);
-	(void) memmove((char *)ptr, (char *)enc, len);
+	memcpy(ptr, enc, len);
 	ptr[len] = 0x00;
 	priv->enc_count++;
 	new_encodings = reallocarray(priv->encodings,
@@ -337,8 +337,7 @@ ShiftGRToGL(register XctData data, int hasCdata)
 	else
 	    priv->itembuf = malloc(priv->buf_count);
     }
-    (void) memmove((char *)priv->itembuf, (char *)data->item,
-		   data->item_length);
+    memcpy(priv->itembuf, data->item, data->item_length);
     data->item = priv->itembuf;
     if (hasCdata) {
 	for (i = data->item_length; --i >= 0; ) {

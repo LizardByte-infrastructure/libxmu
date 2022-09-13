@@ -179,7 +179,7 @@ XmuConvertStandardSelection(Widget w, Time time, Atom *selection, Atom *target,
 	    *(long*)*value = time;
 	else {
 	    long temp = time;
-	    (void) memmove((char*)*value, ((char*)&temp)+sizeof(long)-4, 4);
+	    memcpy((char*)*value, ((char*)&temp)+sizeof(long)-4, 4);
 	}
 	*type = XA_INTEGER;
 	*length = 1;
