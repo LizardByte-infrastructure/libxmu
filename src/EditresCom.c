@@ -1148,7 +1148,7 @@ DumpChildren(Widget w, ProtocolStream *stream, unsigned short *count)
     int i, num_children;
     Widget *children;
     unsigned long window;
-    char *c_class;
+    String c_class;
 
     (*count)++;
 

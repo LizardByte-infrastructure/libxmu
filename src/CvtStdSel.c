@@ -206,7 +206,7 @@ XmuConvertStandardSelection(Widget w, Time time, Atom *selection, Atom *target,
     }
     if (*target == XA_CLASS(d)) {
 	Widget parent = XtParent(w);
-	char *class;
+	String class;
 	int len;
 	while (parent != NULL && !isApplicationShell(w)) {
 	    w = parent;

@@ -46,7 +46,7 @@ in this Software without prior written authorization from The Open Group.
 static char *binsearch(char*, char*, int, int,
 		       int (*__compar)(_Xconst void*, _Xconst void*));
 static int compare_resource_entries(_Xconst void *a,  _Xconst void *b);
-static XmuWidgetNode *find_resource(XmuWidgetNode*, char*, Bool);
+static XmuWidgetNode *find_resource(XmuWidgetNode*, _Xconst char*, Bool);
 static void mark_resource_owner(XmuWidgetNode*);
 /*
  * Implementation
@@ -92,7 +92,7 @@ compare_resource_entries(register _Xconst void *a,
 
 
 static XmuWidgetNode *
-find_resource(XmuWidgetNode *node, char *name, Bool cons)
+find_resource(XmuWidgetNode *node, _Xconst char *name, Bool cons)
 {
     register XmuWidgetNode *sup;
     XtResource res;
