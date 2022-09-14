@@ -1884,7 +1884,7 @@ _XEditResGet32(ProtocolStream *stream, unsigned long *value)
     if (!(_XEditResGet16(stream, &temp1) && _XEditResGet16(stream, &temp2)))
 	return (False);
 
-    *value = ((unsigned short)temp1 << (XER_NBBY * 2)) + (unsigned short)temp2;
+    *value = ((unsigned long)temp1 << (XER_NBBY * 2)) + (unsigned long)temp2;
     return (True);
 }
 
