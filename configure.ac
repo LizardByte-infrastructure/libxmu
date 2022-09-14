@@ -46,6 +46,7 @@ AC_CONFIG_FILES([Makefile
 		doc/Makefile
 		include/Makefile
 		src/Makefile
+		test/Makefile
 		xmu.pc
 		xmuu.pc])
 AC_OUTPUT
