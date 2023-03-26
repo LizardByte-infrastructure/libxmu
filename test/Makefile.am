@@ -30,7 +30,7 @@ AM_CFLAGS = $(CWARNFLAGS) $(XMU_CFLAGS) $(GLIB_CFLAGS)
 XMU_TEST_LIBS  = ${top_builddir}/src/libXmu.la $(XMU_LIBS) $(GLIB_LIBS)
 XMUU_TEST_LIBS = ${top_builddir}/src/libXmuu.la $(XMUU_LIBS) $(GLIB_LIBS)
 
-check_PROGRAMS = CursorName EditResStream ReadBitmapData
+check_PROGRAMS = CursorName EditResStream Lower ReadBitmapData
 TESTS = $(check_PROGRAMS)
 
 TESTS_ENVIRONMENT = $(MALLOC_DEBUG_ENV)
@@ -46,6 +46,9 @@ CursorName_LDADD = $(XMUU_TEST_LIBS)
 
 EditResStream_SOURCES = EditResStream.c
 EditResStream_LDADD = $(XMU_TEST_LIBS)
+
+Lower_SOURCES = Lower.c
+Lower_LDADD = $(XMUU_TEST_LIBS)
 
 ReadBitmapData_SOURCES = ReadBitmapData.c
 ReadBitmapData_LDADD = $(XMU_TEST_LIBS)
