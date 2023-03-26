@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2022, Oracle and/or its affiliates.
+# Copyright (c) 2022, 2023, Oracle and/or its affiliates.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -21,10 +21,31 @@
 # DEALINGS IN THE SOFTWARE.
 #
 
+if ENABLE_UNIT_TESTS
+if HAVE_GLIB
+
 AM_CPPFLAGS = -D_CONST_X_STRING -I${top_srcdir}/include
+AM_CFLAGS = $(CWARNFLAGS) $(XMU_CFLAGS) $(GLIB_CFLAGS)
+
+XMU_TEST_LIBS  = ${top_builddir}/src/libXmu.la $(XMU_LIBS) $(GLIB_LIBS)
+XMUU_TEST_LIBS = ${top_builddir}/src/libXmuu.la $(XMUU_LIBS) $(GLIB_LIBS)
 
 check_PROGRAMS = EditResStream
 TESTS = $(check_PROGRAMS)
 
+TESTS_ENVIRONMENT = $(MALLOC_DEBUG_ENV)
+TESTS_ENVIRONMENT += G_TEST_SRCDIR="$(abs_srcdir)"
+TESTS_ENVIRONMENT += G_TEST_BUILDDIR="$(abs_builddir)"
+
+LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) \
+                  $(top_srcdir)/tap-driver.sh
+LOG_COMPILER = $(srcdir)/tap-test
+
 EditResStream_SOURCES = EditResStream.c
-EditResStream_LDADD = ${top_builddir}/src/libXmu.la $(XMU_LIBS)
+EditResStream_LDADD = $(XMU_TEST_LIBS)
+
+endif HAVE_GLIB
+endif ENABLE_UNIT_TESTS
+
+EXTRA_DIST = \
+        tap-test

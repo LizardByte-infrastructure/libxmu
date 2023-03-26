@@ -2,7 +2,7 @@
 # Initialize Autoconf
 AC_PREREQ([2.70])
 AC_INIT([libXmu], [1.1.4],
-	[https://gitlab.freedesktop.org/xorg/lib/libxmu/-/issues], [libXmu])
+	[https://gitlab.freedesktop.org/xorg/lib/libxmu/-/issues/], [libXmu])
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIRS([m4])
@@ -42,6 +42,12 @@ XORG_WITH_LINT
 XORG_LINT_LIBRARY([Xmu])
 LINTLIBUU=`echo $LINTLIB | sed s/Xmu/Xmuu/`
 AC_SUBST(LINTLIBUU)
+
+# --enable-unit-tests
+AC_REQUIRE_AUX_FILE([tap-driver.sh])
+XORG_ENABLE_UNIT_TESTS
+XORG_WITH_GLIB([2.46])
+XORG_MEMORY_CHECK_FLAGS
 
 AC_CONFIG_FILES([Makefile
 		doc/Makefile
