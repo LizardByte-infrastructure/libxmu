@@ -30,7 +30,7 @@ AM_CFLAGS = $(CWARNFLAGS) $(XMU_CFLAGS) $(GLIB_CFLAGS)
 XMU_TEST_LIBS  = ${top_builddir}/src/libXmu.la $(XMU_LIBS) $(GLIB_LIBS)
 XMUU_TEST_LIBS = ${top_builddir}/src/libXmuu.la $(XMUU_LIBS) $(GLIB_LIBS)
 
-check_PROGRAMS = EditResStream ReadBitmapData
+check_PROGRAMS = CursorName EditResStream ReadBitmapData
 TESTS = $(check_PROGRAMS)
 
 TESTS_ENVIRONMENT = $(MALLOC_DEBUG_ENV)
@@ -40,6 +40,9 @@ TESTS_ENVIRONMENT += G_TEST_BUILDDIR="$(abs_builddir)"
 LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) \
                   $(top_srcdir)/tap-driver.sh
 LOG_COMPILER = $(srcdir)/tap-test
+
+CursorName_SOURCES = CursorName.c
+CursorName_LDADD = $(XMUU_TEST_LIBS)
 
 EditResStream_SOURCES = EditResStream.c
 EditResStream_LDADD = $(XMU_TEST_LIBS)
