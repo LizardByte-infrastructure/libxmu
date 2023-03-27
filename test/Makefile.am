@@ -35,6 +35,7 @@ check_PROGRAMS = \
         EditResStream \
         Lower \
         ReadBitmapData \
+        reallocarray \
         StrToBS \
         StrToGrav \
         StrToJust \
@@ -62,6 +63,9 @@ Lower_LDADD = $(XMUU_TEST_LIBS)
 
 ReadBitmapData_SOURCES = ReadBitmapData.c
 ReadBitmapData_LDADD = $(XMU_TEST_LIBS)
+
+reallocarray_SOURCES = reallocarray.c
+reallocarray_LDADD = $(GLIB_LIBS)
 
 StrToBS_SOURCES = StrToBS.c
 StrToBS_LDADD = $(XMU_TEST_LIBS)

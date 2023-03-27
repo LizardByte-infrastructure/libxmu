@@ -48,6 +48,10 @@ AC_REQUIRE_AUX_FILE([tap-driver.sh])
 XORG_ENABLE_UNIT_TESTS
 XORG_WITH_GLIB([2.46])
 XORG_MEMORY_CHECK_FLAGS
+if test "x$enable_unit_tests" != "xno" ; then
+       AC_CHECK_FUNCS([malloc_usable_size])
+       AC_CHECK_HEADERS([malloc.h])
+fi
 
 AC_CONFIG_FILES([Makefile
 		doc/Makefile
