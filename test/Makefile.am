@@ -38,7 +38,8 @@ check_PROGRAMS = \
         StrToBS \
         StrToGrav \
         StrToJust \
-        StrToLong
+        StrToLong \
+        StrToOrnt
 TESTS = $(check_PROGRAMS)
 
 TESTS_ENVIRONMENT = $(MALLOC_DEBUG_ENV)
@@ -72,6 +73,9 @@ StrToJust_LDADD = $(XMU_TEST_LIBS)
 
 StrToLong_SOURCES = StrToLong.c
 StrToLong_LDADD = $(XMU_TEST_LIBS)
+
+StrToOrnt_SOURCES = StrToOrnt.c
+StrToOrnt_LDADD = $(XMU_TEST_LIBS)
 
 endif HAVE_GLIB
 endif ENABLE_UNIT_TESTS
