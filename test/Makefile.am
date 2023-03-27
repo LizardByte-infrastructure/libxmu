@@ -37,7 +37,8 @@ check_PROGRAMS = \
         ReadBitmapData \
         StrToBS \
         StrToGrav \
-        StrToJust
+        StrToJust \
+        StrToLong
 TESTS = $(check_PROGRAMS)
 
 TESTS_ENVIRONMENT = $(MALLOC_DEBUG_ENV)
@@ -68,6 +69,9 @@ StrToGrav_LDADD = $(XMU_TEST_LIBS)
 
 StrToJust_SOURCES = StrToJust.c
 StrToJust_LDADD = $(XMU_TEST_LIBS)
+
+StrToLong_SOURCES = StrToLong.c
+StrToLong_LDADD = $(XMU_TEST_LIBS)
 
 endif HAVE_GLIB
 endif ENABLE_UNIT_TESTS
