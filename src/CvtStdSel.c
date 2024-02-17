@@ -47,12 +47,7 @@ in this Software without prior written authorization from The Open Group.
 #ifdef WIN32
 #include <X11/Xwinsock.h>
 #else
-#ifndef Lynx
 #include <sys/socket.h>
-#else
-#include <sys/types.h>
-#include <socket.h>
-#endif
 #define XOS_USE_XT_LOCKING
 #endif
 #include <X11/Xos_r.h>
