@@ -127,7 +127,7 @@ get_os_name(void)
 	}
 #endif
 
-#if !defined(SYSV) && (defined(CSRG_BASED) || defined(unix))
+#ifdef CSRG_BASED
 	return XtNewString("BSD");
 #else
 	return NULL;
