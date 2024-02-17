@@ -100,15 +100,11 @@ get_os_name(void)
 	if (uname (&utss) >= 0) {
 	    char *os_name;
 	    int len = strlen(utss.sysname) + 1;
-#ifndef hpux				/* because of hostname length crock */
 	    len += 2 + strlen(utss.release);
-#endif
 	    os_name = XtMalloc (len);
 	    strcpy (os_name, utss.sysname);
-#ifndef hpux
 	    strcat (os_name, " ");
 	    strcat (os_name, utss.release);
-#endif
 	    return os_name;
 	}
 #endif
