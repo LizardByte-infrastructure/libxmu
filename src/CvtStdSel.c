@@ -94,12 +94,8 @@ get_os_name(void)
 
 	if (uname (&utss) >= 0) {
 	    char *os_name;
-	    int len = strlen(utss.sysname) + 1;
-	    len += 2 + strlen(utss.release);
-	    os_name = XtMalloc (len);
-	    strcpy (os_name, utss.sysname);
-	    strcat (os_name, " ");
-	    strcat (os_name, utss.release);
+
+	    XtAsprintf(&os_name, "%s %s", utss.sysname, utss.release);
 	    return os_name;
 	}
 #endif
