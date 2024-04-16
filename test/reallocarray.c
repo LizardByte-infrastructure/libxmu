@@ -42,6 +42,9 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Walloc-size-larger-than="
 
+/* to silence missing prototype warning */
+void *Xmureallocarray(void *optr, size_t nmemb, size_t size);
+
 /*
  * To ensure we're testing our Xmureallocarray and not any system-provided
  * reallocarray, we directly include code being tested, since it won't be
