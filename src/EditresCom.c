@@ -234,7 +234,7 @@ _XEditResCheckMessages(Widget w, XtPointer data, XEvent *event, Boolean *cont)
 	    || (c_event->format != EDITRES_SEND_EVENT_FORMAT))
 	    return;
 
-	time = c_event->data.l[0];
+	time = XtLastTimestampProcessed(dpy);
 	res_comm = c_event->data.l[1];
 	ident = (ResIdent) c_event->data.l[2];
 	if (c_event->data.l[3] != CURRENT_PROTOCOL_VERSION)
