@@ -1631,7 +1631,7 @@ InsertWidget(ProtocolStream *stream, Widget w)
      * make sure that they are inserted in the list from parent -> child
      */
     for (i--, temp = w; temp != NULL; temp = XtParent(temp), i--)
-    widget_list[i] = (CARD64)temp;
+    widget_list[i] = (CARD64)(uintptr_t)temp;
 
     _XEditResPut16(stream, num_widgets);	/* insert number of widgets */
     for (i = 0; i < num_widgets; i++)		/* insert Widgets themselves */

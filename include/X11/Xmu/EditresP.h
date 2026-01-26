@@ -265,6 +265,7 @@ in this Software without prior written authorization from The Open Group.
 
 ************************************************************/
 
+#include <stdint.h>
 #include <X11/Intrinsic.h>
 #include <X11/Xfuncproto.h>
 #include <X11/Xmd.h>
@@ -291,12 +292,7 @@ in this Software without prior written authorization from The Open Group.
 #define EDITRES_COMM_ATOM    "EditresComm"
 #define EDITRES_CLIENT_VALUE "EditresClientVal"
 #define EDITRES_PROTOCOL_ATOM "EditresProtocol"
-
-#ifdef LONG64
-#define ID2WIDGET(X) ((Widget)(void *)((X)))
-#else
-#define ID2WIDGET(X) ((Widget)(void *)((X) & 0xffffffff))
-#endif
+#define ID2WIDGET(X) ((Widget)(void *)(uintptr_t)((X)))
 
 typedef enum {
   SendWidgetTree = 0,
