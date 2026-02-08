@@ -100,7 +100,7 @@ test_EditResStream(void)
 
     res = _XEditResGetWidgetInfo(&ps, &out);
     g_assert_cmpint(res, ==, True);
-    g_assert_cmpmem(ids, sizeof(ids), out.ids, out.num_widgets * sizeof(long));
+    g_assert_cmpmem(ids, sizeof(ids), out.ids, out.num_widgets * sizeof(*out.ids));
     XtFree((char *) out.ids);
     out.ids = NULL;
     _XEditResFreeStream(&ps);
